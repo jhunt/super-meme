@@ -33,21 +33,21 @@ disk_types:
 - disk_size: 51200
   name: prometheus
 exodus:
-  dated: 2020-04-15 19:07:14 +0000
+  dated: 2020-04-15 19:12:08 +0000
   deployer: jhunt
   ips: []
   kit_name: vault
   kit_version: 1.5.1
-  vault_base: /secret/c/e/n/g/a/g/e/1/vault
+  vault_base: /secret/c/e/n/g/a/g/e/m/e/n/t/vault
   version: 2.7.3
 genesis:
   bosh_env: snw-jhunt-lab
   ci_mount: /secret/ci/
-  env: c-e-n-g-a-g-e-1
+  env: c-e-n-g-a-g-e-m-e-n-t
   exodus_mount: /secret/exodus/
-  exodus_path: c-e-n-g-a-g-e-1/vault
+  exodus_path: c-e-n-g-a-g-e-m-e-n-t/vault
   secrets_mount: /secret/
-  secrets_path: c/e/n/g/a/g/e/1/vault
+  secrets_path: c/e/n/g/a/g/e/m/e/n/t/vault
 instance_groups:
 - azs:
   - z1
@@ -55,7 +55,7 @@ instance_groups:
   jobs:
   - name: vault
     properties:
-      vault: foo
+      vault: quux?
     release: safe
   name: vault
   networks:
@@ -81,8 +81,8 @@ meta:
     - z1
     - z2
     - z3
-  vault: /secret/c/e/n/g/a/g/e/1/vault
-name: c-e-n-g-a-g-e-1-vault
+  vault: /secret/c/e/n/g/a/g/e/m/e/n/t/vault
+name: c-e-n-g-a-g-e-m-e-n-t-vault
 networks:
 - name: cf-db
   subnets:
@@ -231,8 +231,8 @@ params:
   auxiliary_vault: true
   availability_zones:
   - z1
-  env: c-e-n-g-a-g-e-1
-  name: c-e-n-g-a-g-e-1-vault
+  env: c-e-n-g-a-g-e-m-e-n-t
+  name: c-e-n-g-a-g-e-m-e-n-t-vault
 releases:
 - name: safe
   sha1: 7da89b2a385c3dfe3dc647844a61e8b531e6e54b
