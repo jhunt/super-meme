@@ -1,0 +1,10 @@
+---
+genesis:
+  env:      c-e-n-g-a-g-e-m-e-n-t
+
+instance_groups:
+  - name: vault
+    jobs:
+      - name: vault
+        properties:
+          vault: quux?

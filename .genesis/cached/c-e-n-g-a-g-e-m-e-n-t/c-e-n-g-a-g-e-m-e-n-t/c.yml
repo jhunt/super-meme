@@ -1,0 +1,17 @@
+---
+kit:
+  name:    vault
+  version: 1.5.1
+
+genesis:
+  bosh_env: snw-jhunt-lab
+
+params:
+  availability_zones: [z1]
+  auxiliary_vault: yes
+
+instance_groups:
+  - name: vault
+    instances: 0
+
+
