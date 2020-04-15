@@ -33,7 +33,7 @@ disk_types:
 - disk_size: 51200
   name: prometheus
 exodus:
-  dated: 2020-04-15 19:17:06 +0000
+  dated: 2020-04-15 19:33:42 +0000
   deployer: root
   ips: []
   kit_name: vault
