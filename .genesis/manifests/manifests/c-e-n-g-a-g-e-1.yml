@@ -1,0 +1,381 @@
+azs:
+- cloud_properties:
+    datacenters:
+    - clusters:
+      - cluster1: {}
+      name: Buffalo-Lab
+  name: z1
+compilation:
+  az: z1
+  network: compilation
+  reuse_compilation_vms: true
+  vm_type: large
+  workers: 5
+disk_types:
+- disk_size: 2048
+  name: default
+- disk_size: 2048
+  name: consul
+- disk_size: 10240
+  name: concourse
+- disk_size: 4096
+  name: postgres
+- disk_size: 4096
+  name: blobstore
+- disk_size: 1024
+  name: vault
+- disk_size: 65536
+  name: bosh
+- disk_size: 2048
+  name: shield
+- disk_size: 51200
+  name: jumpbox
+- disk_size: 51200
+  name: prometheus
+exodus:
+  dated: 2020-04-15 18:51:19 +0000
+  deployer: root
+  ips: []
+  kit_name: vault
+  kit_version: 1.5.1
+  vault_base: /secret/c/e/n/g/a/g/e/1/vault
+  version: 2.7.3
+genesis:
+  bosh_env: snw-jhunt-lab
+  ci_mount: /secret/ci/
+  env: c-e-n-g-a-g-e-1
+  exodus_mount: /secret/exodus/
+  exodus_path: c-e-n-g-a-g-e-1/vault
+  secrets_mount: /secret/
+  secrets_path: c/e/n/g/a/g/e/1/vault
+instance_groups:
+- azs:
+  - z1
+  instances: 0
+  jobs:
+  - name: vault
+    properties:
+      vault: foo
+    release: safe
+  name: vault
+  networks:
+  - name: vault
+    static_ips: []
+  persistent_disk_type: default
+  properties:
+    safe:
+      peer:
+        tls:
+          ca: REDACTED
+          certificate: REDACTED
+          key: REDACTED
+      ui: true
+  stemcell: default
+  vm_type: default
+kit:
+  name: vault
+  version: 1.5.1
+meta:
+  default:
+    azs:
+    - z1
+    - z2
+    - z3
+  vault: /secret/c/e/n/g/a/g/e/1/vault
+name: c-e-n-g-a-g-e-1-vault
+networks:
+- name: cf-db
+  subnets:
+  - azs:
+    - z1
+    cloud_properties:
+      name: VM Network
+    dns:
+    - 10.128.0.1
+    gateway: 10.128.0.1
+    range: 10.128.0.0/16
+    reserved:
+    - 10.128.0.1 - 10.128.16.3
+    - 10.128.16.8 - 10.128.255.254
+    static:
+    - 10.128.16.4
+  type: manual
+- name: shield
+  subnets:
+  - azs:
+    - z1
+    cloud_properties:
+      name: VM Network
+    dns:
+    - 10.128.0.1
+    gateway: 10.128.0.1
+    range: 10.128.0.0/16
+    reserved:
+    - 10.128.0.1 - 10.128.16.7
+    - 10.128.16.12 - 10.128.255.254
+    static:
+    - 10.128.16.8
+  type: manual
+- name: vault
+  subnets:
+  - azs:
+    - z1
+    cloud_properties:
+      name: VM Network
+    dns:
+    - 10.128.0.1
+    gateway: 10.128.0.1
+    range: 10.128.0.0/16
+    reserved:
+    - 10.128.0.1 - 10.128.16.11
+    - 10.128.16.16 - 10.128.255.254
+    static:
+    - 10.128.16.12 - 10.128.16.14
+  type: manual
+- name: cf-edge
+  subnets:
+  - azs:
+    - z1
+    cloud_properties:
+      name: VM Network
+    dns:
+    - 10.128.0.1
+    gateway: 10.128.0.1
+    range: 10.128.0.0/16
+    reserved:
+    - 10.128.0.1 - 10.128.16.15
+    - 10.128.16.24 - 10.128.255.254
+    static:
+    - 10.128.16.16 - 10.128.16.17
+  type: manual
+- name: compilation
+  subnets:
+  - azs:
+    - z1
+    cloud_properties:
+      name: VM Network
+    dns:
+    - 10.128.0.1
+    gateway: 10.128.0.1
+    range: 10.128.0.0/16
+    reserved:
+    - 10.128.0.1 - 10.128.16.23
+    - 10.128.16.32 - 10.128.255.254
+    static: []
+  type: manual
+- name: concourse
+  subnets:
+  - azs:
+    - z1
+    cloud_properties:
+      name: VM Network
+    dns:
+    - 10.128.0.1
+    gateway: 10.128.0.1
+    range: 10.128.0.0/16
+    reserved:
+    - 10.128.0.1 - 10.128.16.31
+    - 10.128.16.40 - 10.128.255.254
+    static:
+    - 10.128.16.32 - 10.128.16.33
+  type: manual
+- name: cf-core
+  subnets:
+  - azs:
+    - z1
+    cloud_properties:
+      name: VM Network
+    dns:
+    - 10.128.0.1
+    gateway: 10.128.0.1
+    range: 10.128.0.0/16
+    reserved:
+    - 10.128.0.1 - 10.128.16.63
+    - 10.128.16.96 - 10.128.255.254
+    static:
+    - 10.128.16.64 - 10.128.16.65
+  type: manual
+- name: cf-runtime
+  subnets:
+  - azs:
+    - z1
+    cloud_properties:
+      name: VM Network
+    dns:
+    - 10.128.0.1
+    gateway: 10.128.0.1
+    range: 10.128.0.0/16
+    reserved:
+    - 10.128.0.1 - 10.128.16.95
+    - 10.128.16.128 - 10.128.255.254
+    static:
+    - 10.128.16.96 - 10.128.16.97
+  type: manual
+- name: default
+  subnets:
+  - azs:
+    - z1
+    cloud_properties:
+      name: VM Network
+    dns:
+    - 10.128.0.1
+    gateway: 10.128.0.1
+    range: 10.128.0.0/16
+    reserved:
+    - 10.128.0.1 - 10.128.16.127
+    - 10.128.16.192 - 10.128.255.254
+    static:
+    - 10.128.16.128 - 10.128.16.133
+  type: manual
+params:
+  auxiliary_vault: true
+  availability_zones:
+  - z1
+  env: c-e-n-g-a-g-e-1
+  name: c-e-n-g-a-g-e-1-vault
+releases:
+- name: safe
+  sha1: 7da89b2a385c3dfe3dc647844a61e8b531e6e54b
+  url: https://github.com/cloudfoundry-community/safe-boshrelease/releases/download/v0.2.1/safe-0.2.1.tgz
+  version: 0.2.1
+stemcells:
+- alias: default
+  os: ubuntu-xenial
+  version: latest
+update:
+  canaries: 1
+  canary_watch_time: 30000-120000
+  max_in_flight: 1
+  serial: true
+  update_watch_time: 30000-120000
+vm_extensions:
+- name: cf-elb
+- name: ssh-elb
+- name: cf-load-balanced
+- name: 100GB_ephemeral_disk
+- name: 50GB_ephemeral_disk
+- cloud_properties:
+    vmx_options:
+      disk.enableUUID: "1"
+  name: kubelet
+vm_types:
+- cloud_properties:
+    cpu: 1
+    disk: 8192
+    ram: 2048
+  name: default
+- cloud_properties:
+    cpu: 2
+    disk: 32768
+    ram: 2048
+  name: compilation
+- cloud_properties:
+    cpu: 1
+    disk: 8192
+    ram: 1024
+  name: small
+- cloud_properties:
+    cpu: 1
+    disk: 16384
+    ram: 2048
+  name: medium
+- cloud_properties:
+    cpu: 2
+    disk: 32768
+    ram: 2048
+  name: large
+- cloud_properties:
+    cpu: 1
+    disk: 8192
+    ram: 2048
+  name: haproxy
+- cloud_properties:
+    cpu: 2
+    disk: 32768
+    ram: 2048
+  name: api
+- cloud_properties:
+    cpu: 1
+    disk: 8192
+    ram: 1024
+  name: bbs
+- cloud_properties:
+    cpu: 1
+    disk: 16384
+    ram: 2048
+  name: blobstore
+- cloud_properties:
+    cpu: 4
+    disk: 40960
+    ram: 4096
+  name: cell
+- cloud_properties:
+    cpu: 1
+    disk: 16384
+    ram: 2048
+  name: diego
+- cloud_properties:
+    cpu: 1
+    disk: 8192
+    ram: 1024
+  name: doppler
+- cloud_properties:
+    cpu: 1
+    disk: 8192
+    ram: 2048
+  name: errand
+- cloud_properties:
+    cpu: 1
+    disk: 16384
+    ram: 2048
+  name: loggregator
+- cloud_properties:
+    cpu: 1
+    disk: 8192
+    ram: 1024
+  name: nats
+- cloud_properties:
+    cpu: 2
+    disk: 32768
+    ram: 2048
+  name: postgres
+- cloud_properties:
+    cpu: 1
+    disk: 8192
+    ram: 1024
+  name: router
+- cloud_properties:
+    cpu: 1
+    disk: 8192
+    ram: 1024
+  name: syslogger
+- cloud_properties:
+    cpu: 1
+    disk: 16384
+    ram: 2048
+  name: uaa
+- cloud_properties:
+    cpu: 1
+    disk: 10240
+    ram: 2048
+  name: blacksmith
+- cloud_properties:
+    cpu: 2
+    disk: 10240
+    ram: 4096
+  name: jumpbox
+- cloud_properties:
+    cpu: 2
+    disk: 65536
+    ram: 4096
+  name: concourse-worker
+- cloud_properties:
+    cpu: 4
+    disk: 81920
+    ram: 8192
+  name: thunder-dome
+- cloud_properties:
+    cpu: 2
+    disk: 24576
+    ram: 6144
+  name: bosh
